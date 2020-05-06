@@ -18,24 +18,11 @@ if len(sys.argv) == 4 and sys.argv[1]=='csr':
 	plain_text = sys.argv[3]
 
 
-if method == 'rand':
-	print("Random substitution")
-	new_abc = random.sample(abc_list,len(abc_list)) 
-elif method == 'csr':
-	print("Caesar cipher with "+str(csr)+" movements")
-	new_abc = random.sample(abc_list,len(abc_list)) 
-else:
-	print("No method or invalid method chosen")
-	new_abc = abc_list
-
-print("--------------------------------------------------------------")
-print(abc_list)
-print(new_abc)
-print("--------------------------------------------------------------")
-
 def caesar(csr):
-	return abc
-	
+	newl = abc_list
+	newl = newl[csr:] + newl[:csr]
+	return newl
+
 def cipher(plain):
 	print("Plain text: "+plain)
 	c = ""
@@ -45,5 +32,22 @@ def cipher(plain):
 		else:
 			c += new_abc[abc[l]]
 	return c
+
+if method == 'rand':
+	print("Random substitution")
+	new_abc = random.sample(abc_list,len(abc_list)) 
+elif method == 'csr':
+	print("Caesar cipher with "+str(csr)+" movements")
+	new_abc = caesar(int(csr)*-1) 
+else:
+	print("No method or invalid method chosen")
+	new_abc = abc_list
+
+print("--------------------------------------------------------------")
+print(abc_list)
+print(new_abc)
+print("--------------------------------------------------------------")
+
+
 
 print("Ciphered text: "+cipher(plain_text))
