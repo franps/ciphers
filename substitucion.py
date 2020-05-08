@@ -24,11 +24,12 @@ def caesar(csr):
 	return newl
 
 def cipher(plain):
+	plain = plain.lower()
 	print("Plain text: "+plain)
 	c = ""
 	for l in plain:
-		if l == ' ':
-			c+= ' '
+		if not l.isalpha():
+			c+= l
 		else:
 			c += new_abc[abc[l]]
 	return c
